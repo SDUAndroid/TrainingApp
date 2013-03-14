@@ -3,7 +3,7 @@ package dk.sdu.trainingapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-
+//hey 
 public class MainActivity extends Activity {
 
 	@Override
