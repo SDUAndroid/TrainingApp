@@ -37,7 +37,7 @@ public class BtServerThreaded{
 	private static final Boolean D = true;
 	private static final String TAG = "BtServerThreaded";
 	
-	public static final String BT_NEW_DATA_INTENT = "tek.andb.multibttestbt.BT_NEW_DATA_INTENT";
+	public static final String BT_NEW_DATA_INTENT = "dk.sdu.trainingapp.BT_NEW_DATA_INTENT";
 	public static final String BT_NEW_DATA_INTENT_EXTRA_BT_DATA = "bt_data";
 	public static final String BT_NEW_DATA_INTENT_EXTRA_BT_DATA_STREAM_ID= "bt_id";
 	

@@ -28,7 +28,7 @@ public class BtMultiConnectorIntentService extends IntentService {
 
 	public static final String BT_DEVICE_MAC_ARRAY = "mac_array";
 	public static final String BT_DEVICE_STREAM_ID_ARRAY = "id_array";
-	public static final String BT_NEW_DATA_INTENT = "tek.andb.multibttestbt.BT_NEW_DATA_INTENT";
+	public static final String BT_NEW_DATA_INTENT = "dk.sdu.trainingapp.BT_NEW_DATA_INTENT";
 	public static final String BT_NEW_DATA_INTENT_EXTRA_BT_DATA = "bt_data";
 	public static final String BT_NEW_DATA_INTENT_EXTRA_BT_DATA_STREAM_ID= "bt_id";
 	

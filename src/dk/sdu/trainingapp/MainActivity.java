@@ -1,20 +1,16 @@
 package dk.sdu.trainingapp;
 
 
-import java.util.ArrayList;
-
 import android.app.Activity;
-import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
@@ -24,6 +20,7 @@ public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
 
 	private EditText mET1 = null;
+
 	private int mET1_lines = 0;
 	
 	private BtMultiResponseReceiver btMultiResponseReceiver = null;
@@ -37,6 +34,7 @@ public class MainActivity extends Activity {
 	private BtConnectorThreaded btct1 = null,btct2 = null;
 	private BtConnectorPolarThreaded btct3 = null;
 	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +44,10 @@ public class MainActivity extends Activity {
 
         // Setup views
         mET1 = (EditText)findViewById(R.id.editText1);
-//        mET2 = (EditText)findViewById(R.id.editText2);
-//        mET3 = (EditText)findViewById(R.id.editText3);
-//        mET1.setEnabled(false);
-//        mET2.setEnabled(false);
-//        mET3.setEnabled(false);
-       ((ToggleButton)findViewById(R.id.button1)).setOnClickListener(mOnClickListener);
+     
+        mET1.setEnabled(false);
+     
+       ((Button)findViewById(R.id.button1)).setOnClickListener(mOnClickListener);
 //        ((ToggleButton)findViewById(R.id.toggleButton2)).setOnClickListener(mOnClickListener);
 //        ((ToggleButton)findViewById(R.id.toggleButton3)).setOnClickListener(mOnClickListener);
 //        
@@ -135,7 +131,7 @@ public class MainActivity extends Activity {
 			switch(v.getId()){
 			
 			case R.id.button1:
-				if ( ((ToggleButton)v).isChecked() ){
+				{
 					mET1.append("\nEnabled");
 					btct1 = new BtConnectorThreaded(getApplicationContext(), BT_DEVICE_1_MAC, BT_DEVICE_1_ID);
 					btct1.connect();
@@ -150,7 +146,7 @@ public class MainActivity extends Activity {
 //					mET1.append("\nDisabled");
 //					btct1.disconnect();
 //				}
-//				break;
+				break;
 //				
 //			case R.id.toggleButton2:
 //				if ( ((ToggleButton)v).isChecked() ){
