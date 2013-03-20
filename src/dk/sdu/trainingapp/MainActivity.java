@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 	
 	
 	private static final int BT_DEVICE_1_ID = 1;
-	private static final String BT_DEVICE_1_MAC = "00:06:66:06:62:1C"; 
+	private static final String BT_DEVICE_1_MAC = "00:06:66:49:59:0F"; 
 	
 	private BtConnectorThreaded btct1 = null,btct2 = null;
 	private BtConnectorPolarThreaded btct3 = null;

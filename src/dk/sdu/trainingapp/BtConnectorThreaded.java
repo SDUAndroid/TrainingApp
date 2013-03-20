@@ -47,7 +47,7 @@ public class BtConnectorThreaded{
 		try {
 			btsocket = device.createInsecureRfcommSocketToServiceRecord(RFCOMM_UUID);
 		} catch (IOException e) {
-			if (D) Log.e(TAG,"could not create BT socket" );
+			if (D) Log.e(TAG,"could not create BT socket :(" );
 			e.printStackTrace();
 		}
 
@@ -86,7 +86,7 @@ public class BtConnectorThreaded{
 			try {
 				btsocket.connect();
 			} catch (IOException e) {
-				if (D) Log.e(TAG,"could not connect BT socket");
+				if (D) Log.e(TAG,"could not connect BT socket- in run");
 				if (D) e.printStackTrace();
 				return;
 			}
