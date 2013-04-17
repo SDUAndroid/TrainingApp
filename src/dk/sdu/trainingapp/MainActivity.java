@@ -14,6 +14,11 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+/**
+ * 		Mandatory 3 extension by
+ * @author Alejandro Jorge Álvarez & Lucas Grzegorczyk
+ *
+ */
 public class MainActivity extends Activity {
 
 	private static final Boolean D = true;
@@ -201,10 +206,10 @@ public class MainActivity extends Activity {
 
 			if (strengthBT < 48000) {
 
-				strength = "more please";// low
+				strength = "More please";// low
 			}
 			if (strengthBT > 55000) {
-				strength = "woaaah";
+				strength = "Woaaah";
 			}
 			if (strengthBT >= 48000 && strengthBT <= 55000) {
 				strength = "Okay...";
