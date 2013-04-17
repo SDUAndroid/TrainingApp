@@ -51,9 +51,7 @@ public class MainActivity extends Activity {
 
 		((Button) findViewById(R.id.button1))
 				.setOnClickListener(mOnClickListener);
-		// ((ToggleButton)findViewById(R.id.toggleButton2)).setOnClickListener(mOnClickListener);
-		// ((ToggleButton)findViewById(R.id.toggleButton3)).setOnClickListener(mOnClickListener);
-		//
+	
 		// Setup broadcast receiver
 		btMultiResponseReceiver = new BtMultiResponseReceiver();
 		multiFilter = new IntentFilter(BtConnectorThreaded.BT_NEW_DATA_INTENT);
@@ -121,11 +119,6 @@ public class MainActivity extends Activity {
 		super.onSaveInstanceState(outState);
 	}
 
-	// @Override
-	// public boolean onCreateOptionsMenu(Menu menu) {
-	// getMenuInflater().inflate(R.menu.activity_main, menu);
-	// return true;
-	// }
 
 	OnClickListener mOnClickListener = new OnClickListener() {
 
@@ -140,81 +133,10 @@ public class MainActivity extends Activity {
 						BT_DEVICE_1_MAC, BT_DEVICE_1_ID);
 				btct1.connect();
 			}
-				// Anders comments
-				// Intent btConnectIntent = new Intent(getApplicationContext(),
-				// BtConnectorIntentService.class);
-				// btConnectIntent.putExtra(BtConnectorIntentService.BT_DEVICE_MAC,
-				// BT_DEVICE_1_MAC); //Qsensor 1
-				// btConnectIntent.putExtra(BtConnectorIntentService.BT_DEVICE_STREAM_ID,
-				// BT_DEVICE_1_ID);
-				// startService(btConnectIntent);
-				//
-				// }else{
-				// mET1.append("\nDisabled");
-				// btct1.disconnect();
-				// }
+			
 				break;
-			//
-			// case R.id.toggleButton2:
-			// if ( ((ToggleButton)v).isChecked() ){
-			// mET2.append("\nEnabled");
-			// btct2 = new BtConnectorThreaded(getApplicationContext(),
-			// BT_DEVICE_2_MAC, BT_DEVICE_2_ID);
-			// btct2.connect();
-			// // Intent btConnectIntent = new Intent(getApplicationContext(),
-			// BtConnectorIntentService.class);
-			// //
-			// btConnectIntent.putExtra(BtConnectorIntentService.BT_DEVICE_MAC,
-			// BT_DEVICE_2_MAC);
-			// //
-			// btConnectIntent.putExtra(BtConnectorIntentService.BT_DEVICE_STREAM_ID,
-			// BT_DEVICE_2_ID);
-			// // startService(btConnectIntent);
-			// }else{
-			// mET2.append("\nDisabled");
-			// btct2.disconnect();
-			// }
-			//
-			// break;
-			//
-			// case R.id.toggleButton3:
-			// if ( ((ToggleButton)v).isChecked() ){
-			// mET3.append("\nEnabled");
-			//
-			// //btct3 = new BtConnectorThreaded(getApplicationContext(),
-			// BT_DEVICE_3_MAC, BT_DEVICE_3_ID);
-			// btct3 = new BtConnectorPolarThreaded(getApplicationContext(),
-			// getString(R.string.polar_hr_sensor_mac_1), BT_DEVICE_3_ID);
-			// btct3.connect();
-			//
-			// // ArrayList<String> mac_array = new ArrayList();
-			// // mac_array.add(BT_DEVICE_1_MAC);
-			// // mac_array.add(BT_DEVICE_2_MAC);
-			// // mac_array.add(BT_DEVICE_3_MAC);
-			// //
-			// // ArrayList<Integer> id_array = new ArrayList();
-			// // id_array.add(BT_DEVICE_1_ID);
-			// // id_array.add(BT_DEVICE_2_ID);
-			// // id_array.add(BT_DEVICE_3_ID);
-			// //
-			// //
-			// // Intent btMultiConnectIntent = new
-			// Intent(getApplicationContext(),
-			// BtMultiConnectorIntentService.class);
-			// //
-			// btMultiConnectIntent.putStringArrayListExtra(BtMultiConnectorIntentService.BT_DEVICE_MAC_ARRAY,
-			// mac_array);
-			// //
-			// btMultiConnectIntent.putIntegerArrayListExtra(BtMultiConnectorIntentService.BT_DEVICE_STREAM_ID_ARRAY,id_array);
-			// // startService(btMultiConnectIntent);
-			//
-			// }else{
-			// mET3.append("\nDisabled");
-			// btct3.disconnect();
-			// }
-			//
-			// break;
-			//
+			
+		
 			}
 
 		}
@@ -227,7 +149,7 @@ public class MainActivity extends Activity {
 
 			int id = 0;
 			String line = "";
-			// int heart_rate = 0;
+			
 
 			if (intent
 					.hasExtra(BtConnectorThreaded.BT_NEW_DATA_INTENT_EXTRA_BT_DATA)) {
@@ -255,7 +177,7 @@ public class MainActivity extends Activity {
 			case BT_DEVICE_1_ID:
 				mET1_lines++;
 				// mET1.append("\n" + mET1_lines + ": " + line);
-				mET1.setText("\n" + mET1_lines + ": " + line);
+				//mET1.setText("\n" + mET1_lines + ": " + line);
 
 				tv.setText(this.getStrength(line));
 				sb.setProgress(Integer.parseInt(line)-42000);
