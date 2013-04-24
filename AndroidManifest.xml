@@ -25,6 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+             android:name="dk.sdu.trainingapp.TestDatabaseActivity">
+        </activity>
 
         <service android:name=".BtConnectorIntentService" >
         </service>

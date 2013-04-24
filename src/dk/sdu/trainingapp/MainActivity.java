@@ -56,6 +56,8 @@ public class MainActivity extends Activity {
 
 		((Button) findViewById(R.id.button1))
 				.setOnClickListener(mOnClickListener);
+		((Button) findViewById(R.id.button2))
+		.setOnClickListener(mOnClickListener);
 	
 		// Setup broadcast receiver
 		btMultiResponseReceiver = new BtMultiResponseReceiver();
@@ -130,6 +132,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 
+			
 			switch (v.getId()) {
 
 			case R.id.button1: {
@@ -138,8 +141,15 @@ public class MainActivity extends Activity {
 						BT_DEVICE_1_MAC, BT_DEVICE_1_ID);
 				btct1.connect();
 			}
+			break;
 			
-				break;
+			case R.id.button2:{
+				
+				Intent myIntent = new Intent(v.getContext(), TestDatabaseActivity.class);
+                startActivityForResult(myIntent, 0);
+			}
+			break;
+			
 			
 		
 			}
