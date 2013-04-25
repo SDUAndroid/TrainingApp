@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Create the database
- *
+ * Mandatory 4 extension by
+ * 
+ * @author Alejandro Jorge Álvarez & Lucas Grzegorczyk
+ * 
  */
 public class MySQLiteHelper extends SQLiteOpenHelper {
 

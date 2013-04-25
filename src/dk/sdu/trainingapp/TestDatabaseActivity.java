@@ -6,6 +6,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 /**
  * Mandatory 4 extension by
@@ -14,14 +15,14 @@ import android.widget.ArrayAdapter;
  */
 
 public class TestDatabaseActivity extends ListActivity {
-	private CommentsDataSource datasource;
+	private CountersDataSource datasource;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_test_database);
 
-		this.datasource = new CommentsDataSource(this);
+		this.datasource = new CountersDataSource(this);
 		this.datasource.open();
 
 		List<Counter> values = this.datasource.getAllCounters();
@@ -42,10 +43,13 @@ public class TestDatabaseActivity extends ListActivity {
 		Counter counter = null;
 		switch (view.getId()) {
 		case R.id.add:
-//			int[] counters = new int[] { 0,3,5 };
-//			int nextInt = new Random().nextInt(3);
-			// Save the new comment to the database
-			counter = this.datasource.createMaxCount(MainActivity.stretchCounter);
+
+			if (MainActivity.stretchCounter == 0) {
+				Toast.makeText(this, "Your record is already added", Toast.LENGTH_SHORT).show();
+				break;
+			}
+			counter = this.datasource
+					.createMaxCount(MainActivity.stretchCounter);
 			adapter.add(counter);
 			MainActivity.stretchCounter = 0;
 			break;

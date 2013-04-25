@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Mandatory 3 extension by
+ * Mandatory 4 extension by
  * 
  * @author Alejandro Jorge Álvarez & Lucas Grzegorczyk
  * 
@@ -154,7 +154,8 @@ public class MainActivity extends Activity {
 				break;
 
 			case R.id.button2: {
-
+				if (!running) break;
+				
 				Intent myIntent = new Intent(v.getContext(),
 						TestDatabaseActivity.class);
 				startActivityForResult(myIntent, 0);

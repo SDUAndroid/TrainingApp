@@ -10,10 +10,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * database connection and supports adding new comments and fetching all comments.
+ * database connection and supports adding new counters and fetching all counters.
  *
  */
-public class CommentsDataSource {
+public class CountersDataSource {
 
   // Database fields
   private SQLiteDatabase database;
@@ -21,7 +21,7 @@ public class CommentsDataSource {
   private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
       MySQLiteHelper.COLUMN_MAXCOUNT };
 
-  public CommentsDataSource(Context context) {
+  public CountersDataSource(Context context) {
     dbHelper = new MySQLiteHelper(context);
   }
 
@@ -42,20 +42,20 @@ public class CommentsDataSource {
         allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
         null, null, null);
     cursor.moveToFirst();
-    Counter newComment = cursorToCounter(cursor);
+    Counter newCounter = cursorToCounter(cursor);
     cursor.close();
-    return newComment;
+    return newCounter;
   }
 
   public void deleteCounter(Counter counter) {
     long id = counter.getId();
-    System.out.println("Comment deleted with id: " + id);
+    System.out.println("Counter deleted with id: " + id);
     database.delete(MySQLiteHelper.TABLE_COUNTER, MySQLiteHelper.COLUMN_ID
         + " = " + id, null);
   }
 
   public List<Counter> getAllCounters() {
-    List<Counter> comments = new ArrayList<Counter>();
+    List<Counter> counters = new ArrayList<Counter>();
 
     Cursor cursor = database.query(MySQLiteHelper.TABLE_COUNTER,
         allColumns, null, null, null, null, null);
@@ -63,12 +63,12 @@ public class CommentsDataSource {
     cursor.moveToFirst();
     while (!cursor.isAfterLast()) {
       Counter counter = cursorToCounter(cursor);
-      comments.add(counter);
+      counters.add(counter);
       cursor.moveToNext();
     }
     // Make sure to close the cursor
     cursor.close();
-    return comments;
+    return counters;
   }
 
   private Counter cursorToCounter(Cursor cursor) {
