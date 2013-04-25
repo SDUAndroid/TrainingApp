@@ -1,7 +1,6 @@
 package dk.sdu.trainingapp;
 
 import java.util.List;
-import java.util.Random;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -43,11 +42,12 @@ public class TestDatabaseActivity extends ListActivity {
 		Counter counter = null;
 		switch (view.getId()) {
 		case R.id.add:
-			int[] counters = new int[] { 0,3,5 };
-			int nextInt = new Random().nextInt(3);
+//			int[] counters = new int[] { 0,3,5 };
+//			int nextInt = new Random().nextInt(3);
 			// Save the new comment to the database
-			counter = this.datasource.createMaxCount(counters[nextInt]);
+			counter = this.datasource.createMaxCount(MainActivity.stretchCounter);
 			adapter.add(counter);
+			MainActivity.stretchCounter = 0;
 			break;
 		case R.id.delete:
 			if (this.getListAdapter().getCount() > 0) {

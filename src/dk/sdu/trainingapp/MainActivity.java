@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
- * 		Mandatory 3 extension by
+ * Mandatory 3 extension by
+ * 
  * @author Alejandro Jorge Álvarez & Lucas Grzegorczyk
- *
+ * 
  */
 public class MainActivity extends Activity {
 
@@ -28,9 +30,10 @@ public class MainActivity extends Activity {
 	private TextView tv = null;
 	private SeekBar sb = null;
 	private int mET1_lines = 0;
-	
-	public boolean workout = false;
-	public int stretchCounter = 0;
+
+	private boolean workout = false;
+	private boolean running = false;
+	public static int stretchCounter = 0;
 
 	private BtMultiResponseReceiver btMultiResponseReceiver = null;
 	private IntentFilter multiFilter = null;
@@ -53,15 +56,18 @@ public class MainActivity extends Activity {
 		// Setup views
 		mET1 = (EditText) findViewById(R.id.editText1);
 		tv = (TextView) findViewById(R.id.textView1);
+		tv.setText("Start workout");
 		sb = (SeekBar) findViewById(R.id.seekBar1);
 
 		mET1.setEnabled(false);
 
 		((Button) findViewById(R.id.button1))
 				.setOnClickListener(mOnClickListener);
-		((Button) findViewById(R.id.button2))
-		.setOnClickListener(mOnClickListener);
-	
+		((Button) findViewById(R.id.button2))// Stop
+				.setOnClickListener(mOnClickListener);
+		((Button) findViewById(R.id.button3))// Start
+				.setOnClickListener(mOnClickListener);
+
 		// Setup broadcast receiver
 		btMultiResponseReceiver = new BtMultiResponseReceiver();
 		multiFilter = new IntentFilter(BtConnectorThreaded.BT_NEW_DATA_INTENT);
@@ -91,6 +97,9 @@ public class MainActivity extends Activity {
 		super.onPause();
 		if (D)
 			Log.d(TAG, "- On Pause -");
+		tv.setText("Start workout");
+		mET1.setText("Your streches---> 0");
+
 		unregisterReceiver(btMultiResponseReceiver);
 	}
 
@@ -129,13 +138,11 @@ public class MainActivity extends Activity {
 		super.onSaveInstanceState(outState);
 	}
 
-
 	OnClickListener mOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 
-			
 			switch (v.getId()) {
 
 			case R.id.button1: {
@@ -144,17 +151,24 @@ public class MainActivity extends Activity {
 						BT_DEVICE_1_MAC, BT_DEVICE_1_ID);
 				btct1.connect();
 			}
-			break;
-			
-			case R.id.button2:{
-				
-				Intent myIntent = new Intent(v.getContext(), TestDatabaseActivity.class);
-                startActivityForResult(myIntent, 0);
+				break;
+
+			case R.id.button2: {
+
+				Intent myIntent = new Intent(v.getContext(),
+						TestDatabaseActivity.class);
+				startActivityForResult(myIntent, 0);
+				running = false;
 			}
-			break;
-			
-			
-		
+				break;
+
+			case R.id.button3: {
+
+				running = true;
+				mET1.setText("Your streches---> "+stretchCounter);
+			}
+				break;
+
 			}
 
 		}
@@ -167,7 +181,6 @@ public class MainActivity extends Activity {
 
 			int id = 0;
 			String line = "";
-			
 
 			if (intent
 					.hasExtra(BtConnectorThreaded.BT_NEW_DATA_INTENT_EXTRA_BT_DATA)) {
@@ -195,11 +208,12 @@ public class MainActivity extends Activity {
 			case BT_DEVICE_1_ID:
 				mET1_lines++;
 				// mET1.append("\n" + mET1_lines + ": " + line);
-				//mET1.setText("\n" + mET1_lines + ": " + line);
+				// mET1.setText("\n" + mET1_lines + ": " + line);
+				if (running) {
+					tv.setText(this.getStrength(line));
 
-				tv.setText(this.getStrength(line));
-				sb.setProgress(Integer.parseInt(line)-42000);
-
+					sb.setProgress(Integer.parseInt(line) - 42000);
+				}
 				break;
 
 			}
@@ -220,9 +234,18 @@ public class MainActivity extends Activity {
 			if (strengthBT < 48000) {
 
 				strength = "More please";// low
+
+				workout = true;
 			}
 			if (strengthBT > 55000) {
 				strength = "Woaaah";
+
+				if (workout) {
+					stretchCounter++;
+					workout = false;
+					mET1.setText("Your streches---> "+stretchCounter);
+
+				}
 			}
 			if (strengthBT >= 48000 && strengthBT <= 55000) {
 				strength = "Okay...";
