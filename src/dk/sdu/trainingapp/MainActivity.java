@@ -28,6 +28,9 @@ public class MainActivity extends Activity {
 	private TextView tv = null;
 	private SeekBar sb = null;
 	private int mET1_lines = 0;
+	
+	public boolean workout = false;
+	public int stretchCounter = 0;
 
 	private BtMultiResponseReceiver btMultiResponseReceiver = null;
 	private IntentFilter multiFilter = null;
